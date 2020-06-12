@@ -17,6 +17,18 @@ empaquetado de fuinciones que se comunican con la base de fenix e interactuar co
     • carpeta con elementos de aplicación (apiRest)
     • imagenes par cargar
 
+### **desplegando aplicativo**
+
+    1.-descarga de gogs
+        •   git clone git@10.54.36.90:jiglesias/GoapirestCartaImagen.git
+    2.-Abre la carpeta apirest en terminal
+<br><img src="./apiRest/formatos/img-instruc/despl1.png" width="600">
+<br><img src="./apiRest/formatos/img-instruc/despl2.png" width="600">
+    3.-Abre en navegador con http://localhost:puerto/static/
+
+
+<br><img src="./apiRest/formatos/img-instruc/despl3.png" width="600">
+
 ## ***Uso desde postman***
 
 en caso que no se cuente con interfaz para interactuar con las ligas de carga edicion y eliminacion de imagenes, se puede acudir a las ligas directas desde algun ide como `postman` solo se necesitan los elemtos de la liga y la conexion a base (dev,qa...etc)
