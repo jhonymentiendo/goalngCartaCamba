@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+    <title></title>
+
+</head>
+
+<body>
+    <div id="pos"></div>
+    <hr>
+    <div id="jsons"></div>
+    <div id="cont"></div>
+
+
+
+<div id="ligasCampanas"></div>
+
+<!--a onclick="pidepdf(100)">pide pdf 100</a><br>
+<a onclick="pidepdf(200)">pide pdf 200</a><br>
+<a onclick="pidepdf(300)">pide pdf 300</a><br>
+<a onclick="pidepdf(400)">pide pdf 400</a><br>
+<a onclick="pidepdf(500)">pide pdf 500</a><br-->
+</body>
+
+
+
+
+<footer>
+    <script src="./download.js"></script>
+
+    <script src="./main.js"></script>
+
+
+    <script>
+
+        function pidepdf(i) {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "text/plain");
+
+            var raw = "{\n   \"empleado\":[\n    {\n        \"carta\":\"offerLetter_"+i+".html\",\n        \"nombre\":\"AURELIANO ROMERO FLORES1\",\n        \"tienda\":\"MEGA SAN ANGEL\",\n        \"asesor\":\"YESICA PIAGA ZAPOxxxx\"\n}\n]\n}";
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("http://localhost:8080/carcarcli", requestOptions)
+                .then(function (resp) {
+                    return resp.blob();
+                })
+                .then(function (blob) {
+                    download(blob);
+                })
+                .catch(error => console.log('error', error));
+        }
+    </script>
+</footer>
+</html>

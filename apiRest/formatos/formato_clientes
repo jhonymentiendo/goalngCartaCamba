@@ -1,0 +1,68 @@
+localhost:8080/carcarcli
+10.51.210.123:8080/carcarcli
+
+localhost:8080/traelistacampanas
+
+go run *.go -env=dev   correr en terminal
+go build   hacer el ejecutable
+
+
+
+{
+   "empleado":[
+    {
+        "carta":"offerLetter_200.html",
+        "nombre":"AURELIANO ROMERO FLORES1",
+        "tienda":"MEGA SAN ANGEL",
+        "asesor":"YESICA PIAGA ZAPOxxxx"
+}
+]
+}
+
+
+{
+   "empleado":[
+    {
+        "carta":"offerLetter_100.html",
+        "nombre":"AURELIANO ROMERO FLORES1",
+        "tienda":"MEGA SAN ANGEL",
+        "asesor":"YESICA PIAGA ZAPOxxxx"
+},
+{
+        "carta":"offerLetter_100.html",
+        "nombre":"AURELIANO ROMERO FLORES2",
+        "tienda":"MEGA SAN ANGEL",
+        "asesor":"YESICA PIAGA ZAPOxxxGSDFASDFx"
+},
+{
+        "carta":"offerLetter_100.html",
+        "nombre":"AURELIANO ROMERO FLORES3",
+        "tienda":"MEGA SAN ANGEL",
+        "asesor":"YESICA PIAGA ZAPOxxxGSDFASDFx"
+},
+{
+        "carta":"offerLetter_200.html",
+        "nombre":"AURELIANO ROMERO FLORES4",
+        "tienda":"MEGA SAN ANGEL",
+        "asesor":"YESICA PIAGA ZAPOxxxGSDFASDFx"
+},
+{
+        "carta":"offerLetter_200.html",
+        "nombre":"AURELIANO ROMERO FLORES5",
+        "tienda":"MEGA SAN ANGEL",
+        "asesor":"YESICA PIAGA ZAPOxxxGSDFASDFx"
+},
+{
+        "carta":"offerLetter_100.html",
+        "nombre":"AURELIANO ROMERO FLORES6",
+        "tienda":"MEGA SAN ANGEL",
+        "asesor":"YESICA PIAGA ZAPOxxxGSDFASDFx"
+},
+{
+        "carta":"offerLetter_100.html",
+        "nombre":"AURELIANO ROMERO FLORES7",
+        "tienda":"MEGA SAN ANGEL",
+        "asesor":"YESICA PIAGA ZAPOxxxGSDFASDFx"
+}
+]
+}

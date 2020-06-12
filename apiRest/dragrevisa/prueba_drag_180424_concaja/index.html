@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0" />
+	<title>Demo cartas Imagenes</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/dragandrop2.css">
+	<link rel="stylesheet" href="/static/js/minified/themes/default.min.css" id="theme-style" />
+	<link rel="stylesheet" type="text/css" href="/static/css/menuDropdown.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/simplePaginator.css">
+	<script>
+		let datos = window.location;
+	</script>
+
+
+</head>
+
+<body>
+
+	<div id="ligasCampanas"></div>
+
+
+
+	<div class="container">
+		<div style="display: blck;" id="header2" class="headerConfig">
+			<h3>JSON:</h3>
+			<div id="coords"></div>
+			<div id="jsons"></div>
+		</div>
+		
+		<div class="wrapperConfig">
+			<div class="tab" id="tabs"></div>
+		</div>
+
+		<input id="campa" placeholder="id campaña" type="text" onkeypress="validate(event)">
+
+		<div id="env" onclick="guardainsertacampa()">Carga Carta</div>
+
+		<div class="navigationConfig">
+			<input type="file" id="myfile" name="imagefile" onchange="previewImage(this,1);" accept="image/x-png">
+		</div>
+		<div class="footerConfig">
+			<div class="imagePreview"></div>
+		</div>
+	</div>
+
+	<outputText style="display: none;" value="Json Imagen"></outputText>
+	<textarea style="display: none;" id="jsonEsc"></textarea>
+
+</body>
+<footer>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/js/jQuery/ui/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/static/js/imagePreview/html5.image.preview.js"></script>
+	<script type="text/javascript" src="/static/js/dragandrop2.js"></script>
+	<script type="text/javascript" src="/static/js/menuDropdown.js"></script>
+	<script type="text/javascript" src="/static/js/simplePaginator.js"></script>
+	<script type="text/javascript" src="/static/js/minified/sceditor.min.js"></script>
+	<script type="text/javascript" src="/static/js/minified/icons/monocons.js"></script>
+	<script type="text/javascript" src="/static/js/minified/formats/bbcode.js"></script>
+	<script type="text/javascript" src="/static/js/download.js"></script>
+	<script type="text/javascript" src="/static/js/peticiones.js"></script>
+
+	<script>
+function validate(evt) {
+  var theEvent = evt || window.event;
+
+  // Handle paste
+  if (theEvent.type === 'paste') {  
+	key = event.clipboardData.getData('text/plain');
+  } else {
+  // Handle key press
+      var key = theEvent.keyCode || theEvent.which;
+      key = String.fromCharCode(key);
+  }
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+	</script>
+	
+
+</footer>
+
+</html>

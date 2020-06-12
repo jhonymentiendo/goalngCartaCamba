@@ -1,0 +1,8 @@
+{
+    "username": "USRSISGES",
+    "password": "DFVjgB67qqg4PqUX",
+    "database": "SGBDPROD",
+    "hostDB": "10.53.54.47:1521",
+    "hostConsul": "10.53.54.64:8500",
+    "portService": "8343"
+}

@@ -1,0 +1,125 @@
+.hidden {
+   display:none;
+}
+.imagePreview{position: relative !important;}
+.imagePreview img{float:left;}
+.cajaConfig{
+  position: absolute !important;
+  top: -57px;
+  left: -13px;
+  background: transparent;
+  cursor: move;
+  opacity: 0.8;
+}
+.canvasTextarea {
+  width: 300px;
+  height: 90px;
+  background: #ccc;
+  opacity: 0.8;
+  resize: none;
+
+}
+.elim{position: relative !important;height: 3px;
+}
+.eliminad{
+  cursor: pointer;
+  display: inline-block; 
+  text-align: left;
+  position: absolute !important;
+  background: #eee;
+  top: 3px;
+  right: 0px;
+  z-index: 4;
+  color: purple;
+}
+
+.fontChange{ 
+  cursor: pointer;
+  display: inline-block; 
+  text-align: left;
+  position: absolute !important;
+  background: #eee;
+  top: 3px;
+  right: 130px;
+  z-index: 4;
+  color: black; 
+
+}
+
+.fontChange2{ 
+  cursor: pointer;
+  display: inline-block; 
+  text-align: left;
+  position: absolute !important;
+  background: #eee;
+  top: 3px;
+  right: 150px;
+  z-index: 4;
+  color: black; 
+}
+
+.fontChange3{ 
+      display: inline-block;
+  text-align: left;
+  position: absolute !important;
+  background: #eee;
+  top: 9px;
+  right: 80px;
+  z-index: 4;
+  color: black;
+  font-size: 25px; 
+}
+
+
+
+/*a{display:block;color: #981793;padding:10px}*/
+.headerConfig h1{
+ height:80px;
+ line-height:80px;
+ margin:0;
+   padding-left:10px;
+   background: #EEE;
+   color: #79B30B;
+   overflow: scroll;
+
+}
+.container{text-align:left}
+.navigationConfig{background:#EEE}
+.footerConfig{background: #FFF;color: #FFF;}
+.container{width:750px;margin:0 auto}
+.contentConfig{float:right;width:500px}
+.navigationConfig{float:left;width:305px}
+.footerConfig{clear:both;width:100%}
+
+div#env {
+  display:inline-block;
+  color:#444;
+  border:1px solid #CCC;
+  background:#DFF3FF;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+  cursor:pointer;
+  vertical-align:middle;
+  max-width: 100px;
+  padding: 5px;
+  text-align: center;
+}
+div#env:active {
+  color:red;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+
+#ligasCampanas a{
+cursor: pointer;
+}
+
+#ligasCampanas a:hover{
+  cursor: pointer;
+  color:blue;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+  }
+
+#ligasCampanas a.elim:hover{
+  cursor: pointer;
+  color:red;
+  box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+  }

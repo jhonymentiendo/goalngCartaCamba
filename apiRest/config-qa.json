@@ -1,0 +1,8 @@
+{
+    "username": "SCSISGES",
+    "password": "SCS1SG3S",
+    "database": "STBDQA",
+    "hostDB": "10.54.36.86:1521",
+    "hostConsul": "10.54.36.89:8500",
+    "portService": "8352"
+}

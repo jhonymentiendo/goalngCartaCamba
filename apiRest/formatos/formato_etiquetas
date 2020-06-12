@@ -1,0 +1,60 @@
+{
+    "datosImagen": {
+        "nombreImagen": "CCP61.png",
+        "idPais": null
+    },
+    "textosPintar": [
+        {
+            "colorR": 0,
+            "colorG": 0,
+            "colorB": 0,
+            "tipoFuente": "Verdana",
+            "estiloFuente": 1,
+            "tamanioFuente": 20,
+            "texto": "#CPD#",
+            "coordX": 384,
+            "coordY": 520,
+            "centrado": "false",
+            "width": 145
+        },
+        {
+            "colorR": 0,
+            "colorG": 0,
+            "colorB": 0,
+            "tipoFuente": "Verdana",
+            "estiloFuente": 1,
+            "tamanioFuente": 20,
+            "texto": "#monto#",
+            "coordX": 344,
+            "coordY": 391,
+            "centrado": "false",
+            "width": 145
+        },
+        {
+            "colorR": 0,
+            "colorG": 0,
+            "colorB": 0,
+            "tipoFuente": "Verdana",
+            "estiloFuente": 1,
+            "tamanioFuente": 20,
+            "texto": "#nombreCliente#",
+            "coordX": 169,
+            "coordY": 172,
+            "centrado": "false",
+            "width": 145
+        },
+        {
+            "colorR": 0,
+            "colorG": 0,
+            "colorB": 0,
+            "tipoFuente": "Verdana",
+            "estiloFuente": 1,
+            "tamanioFuente": 20,
+            "texto": "#fechaActual#",
+            "coordX": 392,
+            "coordY": 240,
+            "centrado": "false",
+            "width": 145
+        }
+    ]
+}

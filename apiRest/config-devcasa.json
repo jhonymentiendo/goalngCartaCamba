@@ -1,0 +1,8 @@
+{
+    "username": "fenix",
+    "password": "fenix",
+    "database": "ORCLCDB.localdomain",
+    "hostDB": "localhost:1521",
+    "hostConsul": "localhost:8500",
+    "portService": "8350"
+}

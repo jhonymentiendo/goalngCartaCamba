@@ -1,0 +1,117 @@
+create or replace NONEDITIONABLE PACKAGE PQMULTIDATA AS 
+
+    PROCEDURE SPGETCARTAS(
+    PA_CAMPA      IN NUMBER,
+    PA_CARTA      OUT SYS_REFCURSOR,
+    CODE_ERROR    OUT NUMBER,
+    DESC_ERROR    OUT VARCHAR2
+  );
+
+  PROCEDURE SPGETCARTAIMG(
+    PA_CAMPA      IN NUMBER,
+    PA_IMAGEN     OUT SYS_REFCURSOR
+  );
+
+    PROCEDURE SPSAVECARTAIMG(
+        PA_IMAGEN  IN  BLOB,
+        PA_ETIQ    IN  VARCHAR2,
+        PA_CAMAPA   IN  NUMBER,
+        CODE_ERROR OUT NUMBER,
+        DESC_ERROR OUT VARCHAR2
+      );
+
+PROCEDURE SPDELETECARTAIMG(
+   PA_CAMPA      IN NUMBER,
+    CODE_ERROR    OUT NUMBER,
+    DESC_ERROR    OUT VARCHAR2
+   );  
+
+END PQMULTIDATA;
+/
+create or replace PACKAGE BODY PQMULTIDATA AS
+
+PROCEDURE SPDELETECARTAIMG(
+   PA_CAMPA      IN NUMBER,
+    CODE_ERROR    OUT NUMBER,
+    DESC_ERROR    OUT VARCHAR2
+   )AS
+   BEGIN
+   
+    DELETE FROM tacartacampa t WHERE t.idcampania = PA_CAMPA;
+   
+   CODE_ERROR :=  0;
+   DESC_ERROR := 'OK';
+   EXCEPTION WHEN OTHERS THEN
+   CODE_ERROR := SQLCODE;
+   DESC_ERROR := SUBSTR(SQLERRM, 1, 200);
+   
+   END SPDELETECARTAIMG;
+
+
+PROCEDURE SPGETCARTAS(
+    PA_CAMPA      IN NUMBER,
+    PA_CARTA      OUT SYS_REFCURSOR,
+    CODE_ERROR    OUT NUMBER,
+    DESC_ERROR    OUT VARCHAR2
+  )AS
+  BEGIN
+  
+  OPEN pa_carta FOR SELECT * FROM tacartacampa t WHERE t.idcampania = nvl(PA_CAMPA,t.idcampania);
+  CODE_ERROR :=  0;
+  DESC_ERROR := 'OK';
+  EXCEPTION WHEN OTHERS THEN
+  PA_CARTA   := NULL;
+  CODE_ERROR := SQLCODE;
+  DESC_ERROR := SUBSTR(SQLERRM, 1, 200);
+  END SPGETCARTAS;
+    
+
+  PROCEDURE SPGETCARTAIMG(
+    PA_CAMPA      IN NUMBER,
+    PA_IMAGEN     OUT SYS_REFCURSOR
+  ) AS
+  BEGIN
+    -- TAREA: Se necesita implantación para PROCEDURE PQMULTIDATA.SPGETCARTAIMG
+    --NULL;
+        OPEN PA_IMAGEN FOR 
+        SELECT t.blimage,t.etiq FROM tacartacampa T WHERE t.idcampania = PA_CAMPA AND ROWNUM<2;
+    EXCEPTION WHEN OTHERS THEN
+        PA_IMAGEN := NULL;
+  END SPGETCARTAIMG;
+  
+  
+  PROCEDURE SPSAVECARTAIMG(
+    PA_IMAGEN  IN  BLOB,
+    PA_ETIQ    IN  VARCHAR2,
+    PA_CAMAPA   IN  NUMBER,
+    CODE_ERROR OUT NUMBER,
+    DESC_ERROR OUT VARCHAR2
+  )AS
+  l_exst NUMBER :=0;
+  BEGIN
+  
+   select case when exists 
+            (SELECT * FROM tacartacampa i WHERE i.IDCAMPANIA = PA_CAMAPA)
+                then 1
+                else 0
+          end into l_exst
+   from dual;
+    
+    if l_exst=1 then
+    UPDATE tacartacampa a SET 
+            a.blimage = NVL(PA_IMAGEN,(SELECT hextoraw('00') from dual)),
+            a.etiq    = NVL(PA_ETIQ ,a.etiq)
+        WHERE a.IDCAMPANIA = PA_CAMAPA;
+    else 
+    INSERT into tacartacampa a (IDCAMPANIA ,BLIMAGE,ETIQ)
+    VALUES( PA_CAMAPA ,NVL(PA_IMAGEN,(SELECT hextoraw('00') from dual)) , pa_etiq);
+    end if;
+  COMMIT;
+  CODE_ERROR := 0;
+  DESC_ERROR := 'CORRECTO'|| PA_CAMAPA;
+  EXCEPTION WHEN OTHERS THEN
+  CODE_ERROR := SQLCODE;
+  DESC_ERROR := SUBSTR(SQLERRM, 1, 200);
+  END SPSAVECARTAIMG;
+  
+END PQMULTIDATA;
