@@ -1,5 +1,7 @@
 # **Repositorio de servicio multimedia de Fénix.**
 
+
+en su momento esto me costó y no fue utilizado asi que lo posteo aca por si alguien le puede servir
 empaquetado de fuinciones que se comunican con la base de fenix e interactuar con los sp para control de cartas de cambaceo en imagen.
 
 ## **Instalación**
