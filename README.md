@@ -1,8 +1,15 @@
 # **Repositorio de servicio multimedia de Fénix.**
 
+```
+En su momento esto me costó y no fue utilizado asi que lo posteo aca por si alguien le puede servir
 
-en su momento esto me costó y no fue utilizado asi que lo posteo aca por si alguien le puede servir
-empaquetado de fuinciones que se comunican con la base de fenix e interactuar con los sp para control de cartas de cambaceo en imagen.
+Contexto, se necesitaba pasar un cdigo de java a lenguaje go, es una interfaz que genera imagenes editadas donde se ponen etiquetas dinamicas a imagenes y se guarda en base de datos tanto la imagen como las coordenadas de las etiquetas.
+
+No soy experto en GO, pero esto fue resultado de un requerimiento no implementado, mucho tiempo libre y un poco de autodesprecio, espero les sirva...
+```
+
+
+Empaquetado de fuinciones que se comunican con la base de fenix e interactuar con los sp para control de cartas de cambaceo en imagen.
 
 ## **Instalación**
 ### **requisitos previos**
