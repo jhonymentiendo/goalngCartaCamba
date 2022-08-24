@@ -19,12 +19,12 @@ import (
 
 	wkhtml "github.com/SebastiaanKlippert/go-wkhtmltopdf"
 	"github.com/godror/godror"
-	"gopkg.in/fogleman/gg"
+	"gopkg.in/fogleman/gg.v1"
 )
 
 func createPDF(w http.ResponseWriter, cartera Cartera, vt string) {
 
-	htmlStr := traehtmlImagenes()
+	htmlStr := traehtmlImagenes(vt)
 	pdfg, err := wkhtml.NewPDFGenerator()
 	check(err)
 	pdfg.Dpi.Set(150)
@@ -39,16 +39,21 @@ func createPDF(w http.ResponseWriter, cartera Cartera, vt string) {
 	if _, err := w.Write(pdfg.Bytes()); err != nil {
 		log.Println("unable to write PDF.")
 	}
-	deletefrompath(pathtempfile)
+	deletefrompathvt(pathtempfile, vt)
 }
 
-func traehtmlImagenes() (html string) {
+func traehtmlImagenes(vt string) (html string) {
 	var files []string
 	var buffer bytes.Buffer
 	root, _ := filepath.Abs(pathtempfile)
 	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
-		files = append(files, path)
-		return nil
+
+		if strings.ContainsAny(path, vt) == true {
+			files = append(files, path)
+			return nil
+		} else {
+			return nil
+		}
 	})
 	if err != nil {
 		panic(err)
@@ -170,6 +175,57 @@ func crearimagen(vt string, empleado Empleado, img []byte, coord string) {
 
 /*------------------------------------------------------------------------*/
 
+func getCartasExistentes2(cam int) (lista []Cartacamba) {
+	db := getConnection()
+	var err = db.Ping()
+	check(err)
+	defer db.Close()
+	var refCursor driver.Rows
+	var codigo int
+	var mensaje string
+	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+
+	qry := `DECLARE
+				PA_CAMPA NUMBER;
+				PA_CARTA SYS_REFCURSOR;
+				CODE_ERROR NUMBER;
+				DESC_ERROR VARCHAR2(200);
+			BEGIN
+				PQMULTIDATA.SPGETCARTAS(
+				PA_CAMPA => :1,
+				PA_CARTA => :2,
+				CODE_ERROR => :3,
+				DESC_ERROR => :4
+				);
+			END;`
+
+	if cam == 0 {
+		_, err = db.Exec(qry, nil, sql.Out{Dest: &refCursor}, sql.Out{Dest: &codigo}, sql.Out{Dest: &mensaje})
+	} else {
+		_, err = db.Exec(qry, cam, sql.Out{Dest: &refCursor}, sql.Out{Dest: &codigo}, sql.Out{Dest: &mensaje})
+	}
+
+	check(err)
+	sub, err := godror.WrapRows(ctx, db, refCursor.(driver.Rows))
+	check(err)
+	defer sub.Close()
+
+	var listatem []Cartacamba
+	for sub.Next() {
+		var campa int
+		var blob interface{}
+		var corrdenadas string
+		if err := sub.Scan(&campa, &blob, &corrdenadas); err != nil {
+			fmt.Println(err)
+			break
+		}
+		listatem2 := Cartacamba{[]byte(``), campa, corrdenadas}
+		listatem = append(listatem, listatem2)
+	}
+
+	return listatem
+}
+
 func getCartasExistentes(cam int) (lista []int) {
 	db := getConnection()
 	var err = db.Ping()
@@ -276,6 +332,9 @@ func getcartacord(cam int) (img []byte, coord string) {
 		stringcoord = string(cord)
 	}
 
+	// log.Printf("-------------------\n")
+	// log.Printf(stringcoord)
+	// log.Printf("-------------------\n")
 	return img, stringcoord
 }
 

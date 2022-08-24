@@ -20,11 +20,12 @@ func main() {
 		os.Exit(1)
 	}
 	environment = *env
-	portServer := consulRegistration()
+	//portServer := consulRegistration()
 
 	verificaCarpetas(pathtempfile, pathcachefiles, pathcacheimg, pathcachejson)
 	router := NewRouter()
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./dragrevisa/prueba_drag_180424_concaja/"))))
-	server := http.ListenAndServe(":"+portServer, router)
+	server := http.ListenAndServe(":8080", router)
+	//server := http.ListenAndServe(":"+portServer, router)
 	log.Fatal(server)
 }

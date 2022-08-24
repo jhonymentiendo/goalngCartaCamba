@@ -14,7 +14,7 @@ import (
 
 	wkhtml "github.com/SebastiaanKlippert/go-wkhtmltopdf"
 	"github.com/gorilla/mux"
-	"gopkg.in/fogleman/gg"
+	"gopkg.in/fogleman/gg.v1"
 )
 
 /*
@@ -55,6 +55,27 @@ func Eliminacampana(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	fmt.Fprintf(w, resp)
+}
+
+func Traelistacampanas2(w http.ResponseWriter, r *http.Request) {
+	var cc []Cartacamba
+	campa := r.PostFormValue("campa")
+	campai, err := strconv.Atoi(campa)
+	if err != nil {
+		//campai = 0
+		cc = getCartasExistentes2(0)
+	} else {
+		cc = getCartasExistentes2(campai)
+	}
+
+	//stringHTML, stringcoord := getcartacord(campai)
+	//cc = Cartacamba{stringHTML, campai, stringcoord}
+
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(cc)
+	w.WriteHeader(200)
+
 }
 
 func Traelistacampanas(w http.ResponseWriter, r *http.Request) {
@@ -124,11 +145,36 @@ func ImprimeListaDeCartas(w http.ResponseWriter, r *http.Request) {
 
 func traedebase(w http.ResponseWriter, r *http.Request) {
 
-	stringHTML, stringcoord := getcartacord(100)
+	campa := r.PostFormValue("campa")
+	campai, err := strconv.Atoi(campa)
+	if err != nil {
+		campai = 100
+	}
+
+	stringHTML, stringcoord := getcartacord(campai)
 	v := string(stringHTML)
 	fmt.Fprintf(w, "-------------------\n")
 	fmt.Fprintf(w, "-------------------\n")
 	fmt.Fprintf(w, v+"\nconsulta terminada 2\n"+stringcoord)
+}
+
+func traejsoncartaeditar(w http.ResponseWriter, r *http.Request) {
+
+	var cc Cartacamba
+	campa := r.PostFormValue("campa")
+	campai, err := strconv.Atoi(campa)
+	if err != nil {
+		campai = 0
+	} else {
+	}
+
+	stringHTML, stringcoord := getcartacord(campai)
+	cc = Cartacamba{stringHTML, campai, stringcoord}
+
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(cc)
+	w.WriteHeader(200)
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {

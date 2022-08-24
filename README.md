@@ -151,6 +151,8 @@ Estos se generan cada que la liga `/insertaImagenBase` es invocada para traer ca
 
 este cache es borrado, cada que una carta es eliminada con la liga `/insertaImagenBase` y cada que es actualizada con la liga `/insertaImagenBase`
 
+acda que se llama la liga para generar imagen, se genera una `llave` con la fecha hasta los milisegundos, para crear usar y borrar las imagenes que X persona genera desde X equipo, asi 2 personas usando las mismas carpetas de cache pueden descargar las cartas de clientes diferentes desde el mismo servicio.
+
 probado desde postman, se reducen los tiempos de 88 cartas en 40 segundos a 88 cartas en 26 segundos
 
 

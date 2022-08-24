@@ -60,6 +60,16 @@ type Ldcc struct {
 	Lcampa []int
 }
 
+//  type Ldcc2 struct {
+//  	Lcampa []Cartacamba
+//  }
+
+type Cartacamba struct {
+	Imagen  []byte `json:"imagen"`
+	Idcampa int    `json:"idcampa"`
+	Letiq   string `json:"letiq"`
+}
+
 func fileExists(filename string) (resp bool) {
 	info, err := os.Stat(filename)
 
@@ -128,6 +138,36 @@ func deletefrompath(path string) {
 			err := os.Remove(file)
 			if err != nil {
 				fmt.Println(err)
+				return
+			}
+		}
+	}
+
+}
+
+func deletefrompathvt(path string, vt string) {
+	var files []string
+	root, _ := filepath.Abs(path)
+	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+		files = append(files, path)
+		return nil
+	})
+	if err != nil {
+		panic(err)
+	}
+	var count = 0
+
+	for _, file := range files {
+		if count == 0 {
+			count++
+		} else {
+			if strings.ContainsAny(file, vt) == true {
+				err := os.Remove(file)
+				if err != nil {
+					fmt.Println(err)
+					return
+				}
+			} else {
 				return
 			}
 		}

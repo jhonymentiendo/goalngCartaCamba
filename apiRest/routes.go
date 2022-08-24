@@ -81,6 +81,12 @@ var routes = Routes{
 		traedebase,
 	},
 	Route{
+		"traejsoncartaeditar",
+		"POST",
+		"/traejsoncartaeditar",
+		traejsoncartaeditar,
+	},
+	Route{
 		"insertaImagenBase",
 		"POST",
 		"/insertaImagenBase",
@@ -91,6 +97,12 @@ var routes = Routes{
 		"GET",
 		"/traelistacampanas",
 		Traelistacampanas,
+	},
+	Route{
+		"traelistacampanas2",
+		"GET",
+		"/traelistacampanas2",
+		Traelistacampanas2,
 	},
 	Route{
 		"eliminacampana",
